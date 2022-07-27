@@ -14,7 +14,7 @@ public class InMemoryContractRepository implements ContractRepository{
 
     @Override
     public List<ContractRequest> getContracts() {
-        return new ArrayList<>(contracts);
+        return new ArrayList<ContractRequest>(contracts);
     }
 
 

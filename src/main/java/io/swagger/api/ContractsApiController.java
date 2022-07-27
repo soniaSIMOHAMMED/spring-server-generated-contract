@@ -1,10 +1,12 @@
 package io.swagger.api;
 
+import io.swagger.infrastructure.ContractProducer;
 import io.swagger.model.ContractActionRequest;
 import io.swagger.model.ContractRequest;
 import io.swagger.model.ContractResponse;
 import io.swagger.model.ContractsResponse;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import io.swagger.model.dto.ContractEvent;
 import io.swagger.service.ContractService;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.enums.ParameterIn;
@@ -20,7 +22,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
 import javax.servlet.http.HttpServletRequest;
-import java.io.DataInput;
 import java.io.IOException;
 import java.util.List;
 
@@ -35,6 +36,8 @@ public class ContractsApiController implements ContractsApi {
     private final HttpServletRequest request;
 
     private final ContractService contractService;
+
+    ContractProducer contractProducer;
 
     @org.springframework.beans.factory.annotation.Autowired
     public ContractsApiController(ObjectMapper objectMapper, HttpServletRequest request, ContractService contractService) {
@@ -68,7 +71,8 @@ public class ContractsApiController implements ContractsApi {
     }
 
     public ResponseEntity<ContractRequest> postContract(@Parameter(in = ParameterIn.DEFAULT, description = "", schema=@Schema()) @RequestBody ContractRequest body) throws IOException {
-
+        ContractEvent contractEvent = contractProducer.apply(body);
+        contractProducer.sendMessage(contractEvent);
         //ContractRequest contractResponse = objectMapper.readValue(body,ContractRequest.class);
         return new ResponseEntity<>(contractService.createContract(body),HttpStatus.CREATED);
 

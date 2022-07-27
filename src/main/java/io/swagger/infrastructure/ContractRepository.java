@@ -1,7 +1,6 @@
 package io.swagger.infrastructure;
 
 import io.swagger.model.ContractRequest;
-import io.swagger.model.ContractResponse;
 
 import java.util.List;
 

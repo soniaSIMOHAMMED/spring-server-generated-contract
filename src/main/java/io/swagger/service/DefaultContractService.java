@@ -2,7 +2,6 @@ package io.swagger.service;
 
 import io.swagger.infrastructure.ContractRepository;
 import io.swagger.model.ContractRequest;
-import io.swagger.model.ContractResponse;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
