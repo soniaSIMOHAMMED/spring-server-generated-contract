@@ -51,6 +51,4 @@ public class Swagger2SpringBoot implements CommandLineRunner {
         }
 
     }
-    @Bean
-    public NewTopic createTopic(){return new NewTopic(TOPIC, 1,(short) 1);}
 }

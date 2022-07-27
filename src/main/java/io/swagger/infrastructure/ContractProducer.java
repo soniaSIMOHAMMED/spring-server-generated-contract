@@ -35,8 +35,10 @@ public class ContractProducer implements Function<ContractRequest, ContractEvent
     public ContractEvent apply(ContractRequest contractRequest) {
         var contract = new ContractEvent();
         contract.setContractType(contractRequest.getContractType().name());
-        contract.setActivatedAt(contractRequest.getActivatedAt());
-        contract.setExpireAt(contract.getExpireAt());
+        contract.setCreatedAt(contractRequest.getCreatedAt().toString());
+        contract.setSignedAt(contractRequest.getSignedAt().toString());
+        contract.setActivatedAt(contractRequest.getActivatedAt().toString());
+        contract.setExpireAt(contractRequest.getExpireAt().toString());
         contract.setStatus(contractRequest.getStatus().name());
         return contract;
 

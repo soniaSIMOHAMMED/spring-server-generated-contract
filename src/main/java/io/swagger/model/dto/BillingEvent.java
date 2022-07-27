@@ -2,18 +2,20 @@ package io.swagger.model.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
-import org.threeten.bp.LocalDate;
 
 @Data
-public class ContractEvent {
-    @JsonProperty("contractType")
-    private String contractType = null;
+public class BillingEvent {
+    @JsonProperty("subscriptionType")
+    String subscriptionType;
+
+    @JsonProperty("contractId")
+    private Integer contractId = null;
+    
+   @JsonProperty("contractRef")
+    private String contractRef = null;
 
     @JsonProperty("createdAt")
     private String createdAt = null;
-
-    @JsonProperty("signedAt")
-    private String signedAt = null;
 
     @JsonProperty("activatedAt")
     private String activatedAt = null;
@@ -21,6 +23,8 @@ public class ContractEvent {
     @JsonProperty("expireAt")
     private String expireAt = null;
 
-    @JsonProperty("status")
-    private String status = null;
+    @JsonProperty("seller")
+    private String sellerRef = null;
+
+
 }

@@ -40,10 +40,11 @@ public class ContractsApiController implements ContractsApi {
     ContractProducer contractProducer;
 
     @org.springframework.beans.factory.annotation.Autowired
-    public ContractsApiController(ObjectMapper objectMapper, HttpServletRequest request, ContractService contractService) {
+    public ContractsApiController(ObjectMapper objectMapper, HttpServletRequest request, ContractService contractService,ContractProducer contractProducer) {
         this.objectMapper = objectMapper;
         this.request = request;
         this.contractService = contractService;
+        this.contractProducer = contractProducer;
     }
 
     public ResponseEntity<ContractResponse> getContract(@Parameter(in = ParameterIn.PATH, description = "External identifier of the contract", required=true, schema=@Schema()) @PathVariable("contractRef") String contractRef) {
